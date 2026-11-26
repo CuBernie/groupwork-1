@@ -73,6 +73,21 @@ python -m http.server 8000
 
 **部署结果**：`https://cubernie.github.io/groupwork-1/` 返回 200，实际下载 3,874,078 字节，与本地 `index.html` 完全一致；`<title>` 与 `id="mods"` 标记均在，说明 3.9 MB 单文件完整发布。
 
+#### 第二次部署（本文档提交，用于独立观察）
+
+| 项目 | 值 |
+| --- | --- |
+| Run ID | `45783166640` |
+| 源提交 | `1d90760`（`Document CI/CD exploration`） |
+| 部署记录 | `deployment 8080135118`，环境 `github-pages` |
+| `build` job | 08:26:29 → 08:26:35（6 s），同样是 `Set up job` / `Checkout` / `Upload artifact` / `Post Checkout` / `Complete job` |
+| `report-build-status` | 08:26:37 → 08:26:41（4 s） |
+| `deploy` job | 08:26:39 → 08:26:49（10 s） |
+| Pages build | `built`，19.2 s |
+| 总耗时 | 08:26:26 → 08:26:50，约 24 s |
+
+两次部署的步骤集合完全一致，说明这条流水线是确定性的：同样的输入永远走同样的五个步骤，**两次都没有任何内容检查**。线上 `README.md` 已包含本节，说明本次发布同样生效。
+
 ### 3. 哪些自动，哪些手动
 
 | 自动 | 手动 |
